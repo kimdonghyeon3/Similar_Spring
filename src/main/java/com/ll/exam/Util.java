@@ -1,10 +1,18 @@
 package com.ll.exam;
 
-import java.beans.Introspector;
-
 public class Util {
-    public static class str{
+    public static class cls{
 
+        public static <T> T newObj(Class<T> cls, T defaultValue) {
+            try {
+                return cls.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                return defaultValue;
+            }
+        }
+    }
+
+    public static class str{
         public static String decapitalize(String string) {
 
             if (string == null || string.length() == 0) {
