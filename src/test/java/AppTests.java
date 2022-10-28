@@ -10,4 +10,13 @@ public class AppTests {
 
         assertThat(articleController).isNotNull();
     }
+
+    @Test
+    public void ioc__articleController_singleton() {
+        ArticleController articleController1 = Container.getArticleController();
+        ArticleController articleController2 = Container.getArticleController();
+
+        assertThat(articleController1).isEqualTo(articleController2);
+    }
+
 }
