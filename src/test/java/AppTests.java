@@ -39,11 +39,21 @@ public class AppTests {
     }
 
     @Test
-    public void ioc__articleService__싱글톤() {
+    public void ioc__articleService__singleton() {
         ArticleService articleService1 = Container.getObj(ArticleService.class);
         ArticleService articleService2 = Container.getObj(ArticleService.class);
 
         assertThat(articleService2).isEqualTo(articleService1);
+    }
+
+
+    @Test
+    public void articleController를_생성할때_articleService도_같이_생성() {
+        ArticleController articleController = Container.getObj(ArticleController.class);
+
+        ArticleService articleService = articleController.getArticleServiceForTest();
+
+        assertThat(articleService).isNotNull();
     }
 
 }
