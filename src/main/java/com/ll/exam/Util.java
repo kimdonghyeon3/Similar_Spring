@@ -4,6 +4,7 @@ import com.ll.exam.annotation.Controller;
 import com.ll.exam.article.controller.ArticleController;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,26 @@ public class Util {
 
             return new String(c);
 
+        }
+    }
+
+    public static class reflection {
+        public static <T> T getFieldValue(Object o, String fieldName, T defaultValue) {
+            Field field = null;
+
+            try {
+                field = o.getClass().getDeclaredField(fieldName);
+            } catch (NoSuchFieldException e) {
+                return defaultValue;
+            }
+
+            field.setAccessible(true);
+
+            try {
+                return (T)field.get(o);
+            } catch (IllegalAccessException e) {
+                return defaultValue;
+            }
         }
     }
 }

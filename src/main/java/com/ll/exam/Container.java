@@ -2,6 +2,7 @@ package com.ll.exam;
 
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
+import com.ll.exam.annotation.Repository;
 import com.ll.exam.annotation.Service;
 import com.ll.exam.article.controller.ArticleController;
 import org.reflections.Reflections;
@@ -18,6 +19,7 @@ public class Container {
     }
 
     private static void scanComponents() {
+        scanRepositories();
         scanServices();
         scanControllers();
 
@@ -50,6 +52,13 @@ public class Container {
 
                     }
                 });
+    }
+
+    private static void scanRepositories() {
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
+            objects.put(cls, Util.cls.newObj(cls, null));
+        }
     }
 
     private static void scanServices() {
