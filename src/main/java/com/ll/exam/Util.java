@@ -1,6 +1,8 @@
 package com.ll.exam;
 
+import com.ll.exam.annotation.Controller;
 import com.ll.exam.article.controller.ArticleController;
+import org.reflections.Reflections;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +15,10 @@ public class Util {
         static {
             objects = new HashMap<>();
 
-            objects.put(ArticleController.class, new ArticleController());
-            objects.put(HomeController.class, new HomeController());
+            Reflections ref = new Reflections("com.ll.exam");
+            for (Class<?> cls : ref.getTypesAnnotatedWith(Controller.class)) {
+                objects.put(cls, Util.cls.newObj(cls, null));
+            }
         }
 
         public static <T> T getObj(Class<T> cls) {
