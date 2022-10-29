@@ -1,11 +1,14 @@
 package com.ll.exam.article.controller;
 
 
+import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Rq;
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
 import com.ll.exam.article.service.ArticleService;
+
+import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -15,7 +18,10 @@ public class ArticleController {
 
     @GetMapping("/usr/article/list/{broadCode}")
     public void showList(Rq rq){
-        rq.println("게시물 리스트");
+        List<ArticleDto> articleDtos = articleService.getArticles();
+
+        rq.setAttr("articles", articleDtos);
+        rq.view("usr/article/list");
     }
 
     @GetMapping("/usr/article/detail/{boardCode}/{id}")

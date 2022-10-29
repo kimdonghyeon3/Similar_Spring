@@ -1,6 +1,7 @@
 package com.ll.exam.spring;
 
 import com.ll.exam.App;
+import com.ll.exam.db.MyDb;
 import com.ll.exam.util.Rq;
 import com.ll.exam.util.Util;
 import com.ll.exam.annotation.Controller;
@@ -86,7 +87,13 @@ public class ControllerManager {
         } catch (IllegalAccessException e) {
             rq.println("액션시작에 실패하였습니다.");
         } catch (InvocationTargetException e) {
-            rq.println("액션시작에 실패하였습니다.");
+            throw new RuntimeException(e);
+            //rq.println("액션시작에 실패하였습니다.");
+        } finally {
+            MyDb myDb = Container.getObj(MyDb.class);
+            myDb.closeConnection(); // 현재 쓰레드에 할당된 커넥션을 닫는다.
+            // 안하면 벌어지는 일
+            // 매 요청마다, DB 요청이 쌓인다
         }
     }
 

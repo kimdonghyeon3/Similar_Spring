@@ -1,6 +1,7 @@
 package com.ll.exam.spring;
 
 import com.ll.exam.App;
+import com.ll.exam.db.MyDb;
 import com.ll.exam.util.Util;
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
@@ -23,8 +24,13 @@ public class Container {
         scanRepositories();
         scanServices();
         scanControllers();
+        scanCustom();
 
         resolveDependenciesAllComponents();
+    }
+
+    private static void scanCustom() {
+        objects.put(MyDb.class, new MyDb(App.DB_HOST, App.DB_PORT, App.DB_ID, App.DB_PASSWORD, App.DB_NAME));
     }
 
     private static void resolveDependenciesAllComponents() {
