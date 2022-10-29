@@ -1,4 +1,4 @@
-package com.ll.exam;
+package com.ll.exam.spring;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.ll.exam.article.controller;
 
 
-import com.ll.exam.Rq;
+import com.ll.exam.util.Rq;
 import com.ll.exam.annotation.Autowired;
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;

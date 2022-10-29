@@ -1,4 +1,4 @@
-package com.ll.exam;
+package com.ll.exam.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
