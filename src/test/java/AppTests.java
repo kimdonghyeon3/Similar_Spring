@@ -79,7 +79,7 @@ public class AppTests {
     public void controllerManager__GetMapping_Count() {
         Map<String, RouteInfo> routeInfos = ControllerManager.getRouteInfosForTest();
 
-        assertThat(routeInfos.size()).isEqualTo(3);
+        assertThat(routeInfos.size()).isEqualTo(4);
     }
 
 }
