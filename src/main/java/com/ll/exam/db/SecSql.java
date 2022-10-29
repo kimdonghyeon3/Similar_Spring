@@ -1,4 +1,4 @@
-package com.ll.db;
+package com.ll.exam.db;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

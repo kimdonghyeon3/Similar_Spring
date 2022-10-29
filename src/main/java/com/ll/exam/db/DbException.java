@@ -1,4 +1,4 @@
-package com.ll.db;
+package com.ll.exam.db;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

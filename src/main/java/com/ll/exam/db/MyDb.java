@@ -1,4 +1,4 @@
-package com.ll.db;
+package com.ll.exam.db;
 
 import lombok.Getter;
 import lombok.Setter;
