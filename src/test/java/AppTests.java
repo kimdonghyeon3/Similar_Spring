@@ -1,4 +1,6 @@
 import com.ll.exam.Container;
+import com.ll.exam.ControllerManager;
+import com.ll.exam.RouteInfo;
 import com.ll.exam.Util;
 import com.ll.exam.article.controller.ArticleController;
 import com.ll.exam.article.repository.ArticleRepository;
@@ -6,6 +8,7 @@ import com.ll.exam.article.service.ArticleService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,6 +68,18 @@ public class AppTests {
         ArticleRepository articleRepository = Util.reflection.getFieldValue(articleService, "articleRepository", null);
 
         assertThat(articleRepository).isNotNull();
+    }
+
+    @Test
+    public void controllerManager__GetMappings_scan() {
+        ControllerManager.init(); // 클래스를 강제로 로딩되게 하려는 목적
+    }
+
+    @Test
+    public void controllerManager__GetMapping_Count() {
+        Map<String, RouteInfo> routeInfos = ControllerManager.getRouteInfosForTest();
+
+        assertThat(routeInfos.size()).isEqualTo(2);
     }
 
 }

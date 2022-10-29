@@ -16,7 +16,9 @@ public class ArticleController {
     public void showList(){
 
     }
-    public ArticleService getArticleServiceForTest() {
-        return articleService;
+
+    @GetMapping("/usr/article/detail/{broadCode}")
+    public void showDetail(){
+
     }
 }
